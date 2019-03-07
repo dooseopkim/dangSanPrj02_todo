@@ -76,7 +76,7 @@
 			}
 			xhr.send("id=" + id + "&type=" + type);
 		}
-		function btn_event(event) {
+		function updateType(event) {
 			var btn = event.target;
 			var id = btn.parentElement.id;
 			var type = btn.parentElement.parentElement.id;
@@ -98,7 +98,6 @@
 				document.getElementById('DONE').append(li);
 			}
 		}
-
 	</script>
 </body>
 </html>

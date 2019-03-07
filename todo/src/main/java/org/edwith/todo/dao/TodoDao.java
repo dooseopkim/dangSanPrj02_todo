@@ -11,7 +11,7 @@ import org.edwith.todo.util.JDBCUtil;
 
 public class TodoDao {
 	private static final String SQL__ADD_TODO = "INSERT INTO todo(title,name,sequence,type) VALUES(?,?,?,?)";
-	private static final String SQL__GET_TODOS = "SELECT id, name, regdate, sequence, title, type FROM todo ORDER BY regdate";
+	private static final String SQL__GET_TODOS = "SELECT id, name, regdate, sequence, title, type FROM todo ORDER BY sequence, regdate";
 	private static final String SQL__UPDATE_TODO = "UPDATE todo SET type = ? WHERE id = ?";
 
 	public int addTodo(TodoDto todo) {
