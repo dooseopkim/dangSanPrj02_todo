@@ -1,0 +1,114 @@
+@charset "UTF-8";
+.todoInput-container {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 60%;
+  min-height: 100vh;
+  transition: 0.5s all ease-out;
+}
+.todoInput-form {
+  display: block;
+  width: 80%;
+  height: 100%;
+}
+.row {
+  position: relative;
+
+  margin: 0;
+  padding: 1.5rem 0;
+  display: block;
+  width: 100%;
+
+  text-align: left;
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+.todoInput-title {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 800;
+}
+.todoInput-text input[type="text"] {
+  display: block;
+  width: 100%;
+  margin: 0.5rem 0;
+  padding: 0.5rem 0.75rem;
+  box-sizing: border-box;
+
+  font-size: 1.5rem;
+  line-height: 2rem;
+  outline: none;
+  border: 1px solid darkgray;
+  border-radius: 0.5rem;
+}
+.todoInput-radio__title {
+  display: block;
+  margin: 0.5rem 0;
+}
+.todoInput-radio__text {
+  display: inline-block;
+  margin-right: 1rem;
+}
+.todoInput-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.todoInput-btn__left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  width: 30%;
+}
+.todoInput-btn__right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  width: 60%;
+}
+.todoInput-btn .btn {
+  display: block;
+  width: 10rem;
+  margin: 0.5rem 0;
+  padding: 0.5rem 1rem;
+  box-sizing: border-box;
+
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 2rem;
+  color: black;
+  cursor: pointer;
+}
+.todoInput-btn .btn-form {
+  border: 0;
+  background: skyblue;
+  color: white;
+  margin-left: 1rem;
+}
+.todoInput-btn .btn-form:hover {
+  background: rgb(0, 183, 255);
+}
+.todoInput-btn .btn-back:hover {
+  border: 1px solid darkgray;
+  color: darkgray;
+}
+@media (max-width: 1200px) {
+.todoInput-container {
+    width: 80%;
+  }
+@media (max-width: 600px) {
+.todoInput-container {
+    width: 100%;
+  }
