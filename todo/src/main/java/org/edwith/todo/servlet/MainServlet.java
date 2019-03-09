@@ -24,18 +24,18 @@ public class MainServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=utf-8");
 		TodoDao dao = new TodoDao();
-		List<TodoDto> temp = dao.getTodos();
+		List<TodoDto> initTodos = dao.getTodos();
 		List<TodoDto> todoList = new ArrayList<TodoDto>();
 		List<TodoDto> doingList = new ArrayList<TodoDto>();
 		List<TodoDto> doneList = new ArrayList<TodoDto>();
 		
-		for(int i=0; i < temp.size(); i++) {
-			if(temp.get(i).getType().equals("TODO")) {
-				todoList.add(temp.get(i));
-			}else if(temp.get(i).getType().equals("DOING")) {
-				doingList.add(temp.get(i));
+		for(int i=0; i < initTodos.size(); i++) {
+			if(initTodos.get(i).getType().equals("TODO")) {
+				todoList.add(initTodos.get(i));
+			}else if(initTodos.get(i).getType().equals("DOING")) {
+				doingList.add(initTodos.get(i));
 			}else {
-				doneList.add(temp.get(i));
+				doneList.add(initTodos.get(i));
 			}
 		}
 		request.setAttribute("todoList", todoList);
