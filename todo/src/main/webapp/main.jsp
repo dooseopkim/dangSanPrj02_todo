@@ -59,6 +59,7 @@
 	</article>
 	</main>
 	<script>
+	
 		function modifyType(id, type) {
 			var xhr = new XMLHttpRequest();
 
