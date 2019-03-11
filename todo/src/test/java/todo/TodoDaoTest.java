@@ -19,7 +19,7 @@ public class TodoDaoTest {
 	}
 	
 	//getTodos
-	@Test
+//	@Test
 	public void getTodos() {
 		for(TodoDto todo: new TodoDao().getTodos()) {
 			System.out.println(todo);
@@ -27,10 +27,10 @@ public class TodoDaoTest {
 	}
 	
 	//updateTodo
-//	@Test
+	@Test
 	public void updateTodo() {
 		TodoDto todo = new TodoDto();
-		todo.setId((long) 3);
+		todo.setId((long) 33);
 		todo.setType("TODO");
 		int result = new TodoDao().updateTodo(todo);
 		System.out.println(result + " 개의 행이 업데이트 되었습니다.");

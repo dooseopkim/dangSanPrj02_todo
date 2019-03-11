@@ -12,7 +12,7 @@ import org.edwith.todo.dto.TodoDto;
 import org.edwith.todo.util.JDBCUtil;
 
 public class TodoDao {
-	private final String SQL__ADD_TODO = "INSERT INTO todo(title,name,sequence,type) VALUES(?,?,?,?)";
+	private final String SQL__ADD_TODO = "INSERT INTO todo(title,name,sequence) VALUES(?,?,?)";
 	private final String SQL__GET_TODOS = "SELECT id, name, regdate, sequence, title, type FROM todo ORDER BY sequence, regdate";
 	private final String SQL__UPDATE_TODO = "UPDATE todo SET type = ? WHERE id = ?";
 	
@@ -30,7 +30,6 @@ public class TodoDao {
 			pstmt.setString(1, todo.getTitle());
 			pstmt.setString(2, todo.getName());
 			pstmt.setInt(3, todo.getSequence());
-			pstmt.setString(4, todo.getType());
 			result = pstmt.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -44,12 +43,12 @@ public class TodoDao {
 				                    .createStatement()
 				                    .executeQuery(SQL__GET_TODOS)){
 			while (rs.next()) {
-				TodoDto todo = new TodoDto(rs.getLong("id"), 
-										   rs.getString("name"), 
-										   dateFormatChange(rs.getString("regDate")),
-									   	   rs.getInt("sequence"), 
-									   	   rs.getString("title"), 
-									   	   rs.getString("type"));
+				TodoDto todo = new TodoDto(rs.getLong("id"),
+						rs.getString("title"), 
+						rs.getString("name"), 
+						rs.getInt("sequence"), 
+						rs.getString("type"),
+						dateFormatChange(rs.getString("regDate")));
 				result.add(todo);
 			}
 		} catch (ClassNotFoundException | SQLException e) {

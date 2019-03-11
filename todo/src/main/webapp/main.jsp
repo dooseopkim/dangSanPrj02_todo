@@ -10,8 +10,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" href="./resources/css/common.css" />
-<link rel="stylesheet" href="./resources/css/main.css" />
+<link rel="stylesheet" href="./resources/css/common.css"/>
+<link rel="stylesheet" href="./resources/css/main.css"/>
 <title>Todo</title>
 </head>
 <body>
@@ -59,30 +59,31 @@
 	</article>
 	</main>
 	<script>
-	
-		function modifyType(id, type) {
-			var xhr = new XMLHttpRequest();
 
-			xhr.open("POST", 'TodoTypeServlet', true);
-			xhr.setRequestHeader("Content-Type",
-					"application/x-www-form-urlencoded");
+		function modifyType(id, type) {
+			var uri = "TodoTypeServlet/"+id;
+			var data = {};
+			data.type = type;
+			var json = JSON.stringify(data);
+			
+			var xhr = new XMLHttpRequest();
+			xhr.open("PUT", uri, true);
+			xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
 			xhr.onreadystatechange = function() {
 				if (this.readyState == 4 && this.status == 200) {
 					if (this.responseText === 'success') {
-						alert(this.responseText);
+						moveCard(id, type);
 					} else {
-						alert(this.responseText);
+						alert("Todo없데이트에 실패하였습니다.");
 					}
 				}
 			}
-			xhr.send("id=" + id + "&type=" + type);
+			xhr.send(json);
 		}
 		function updateType(event) {
 			var btn = event.target;
 			var id = btn.parentElement.id;
 			var type = btn.parentElement.parentElement.id;
-			
-			moveCard(id, type);
 			modifyType(id, type);
 		}
 		function moveCard(id, type) {

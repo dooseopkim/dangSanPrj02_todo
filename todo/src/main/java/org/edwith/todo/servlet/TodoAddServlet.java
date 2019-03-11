@@ -24,13 +24,12 @@ public class TodoAddServlet extends HttpServlet {
 		String title = request.getParameter("title");
 		String name = request.getParameter("name");
 		int sequence = Integer.parseInt(request.getParameter("sequence"));
-		String type = "TODO";
 
-		TodoDto todo = new TodoDto(name, sequence, title, type);
+		TodoDto todo = new TodoDto(title, name, sequence);
 		TodoDao dao = new TodoDao();
 		if(dao.addTodo(todo) == 1) {
 			System.out.println("success AddTodo");
-			response.sendRedirect("main");
+			response.sendRedirect("/");
 		}else {
 			System.out.println("Fail AddTodo");
 			response.sendRedirect("TodoFormServlet");
