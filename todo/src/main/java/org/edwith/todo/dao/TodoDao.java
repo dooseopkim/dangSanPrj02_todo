@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.edwith.todo.dto.TodoDto;
+import org.edwith.todo.util.DateFormatChange;
 import org.edwith.todo.util.JDBCUtil;
 
 public class TodoDao {
@@ -16,13 +17,6 @@ public class TodoDao {
 	private final String SQL__GET_TODOS = "SELECT id, name, regdate, sequence, title, type FROM todo ORDER BY sequence, regdate";
 	private final String SQL__UPDATE_TODO = "UPDATE todo SET type = ? WHERE id = ?";
 	
-	private final String IN__DATE = "yyyy-MM-dd HH:mm:ss.S";
-	private final String OUT_DATE = "yyyy.MM.dd";
-	
-	private final DateTimeFormatter FORMAT__IN_DATE = DateTimeFormatter.ofPattern(IN__DATE);
-	private final DateTimeFormatter FORMAT__OUT_DATE = DateTimeFormatter.ofPattern(OUT_DATE);
-	
-
 	public int addTodo(TodoDto todo) {
 		int result = 0;
 		try(PreparedStatement pstmt = JDBCUtil.getConnection()
@@ -48,7 +42,8 @@ public class TodoDao {
 						rs.getString("name"), 
 						rs.getInt("sequence"), 
 						rs.getString("type"),
-						dateFormatChange(rs.getString("regDate")));
+						DateFormatChange.change((rs.getString("regDate")))
+						);
 				result.add(todo);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
@@ -79,8 +74,5 @@ public class TodoDao {
 			return type;
 		}
 	}
-	public String dateFormatChange(String regDate) {
-		LocalDateTime localDateTime = LocalDateTime.parse(regDate, FORMAT__IN_DATE);
-		return localDateTime.format(FORMAT__OUT_DATE).toString();
-	}
+
 }

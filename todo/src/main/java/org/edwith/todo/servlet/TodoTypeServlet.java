@@ -31,8 +31,7 @@ public class TodoTypeServlet extends HttpServlet {
 			Long id = Long.parseLong(req.getPathInfo().substring(1)); 	
 			
 			ObjectMapper mapper = new ObjectMapper();
-			Map<String, String> typeMap = new HashMap<String, String>();
-			typeMap = mapper.readValue(inputStreamToString(req.getInputStream()),new TypeReference<Map<String, String>>(){});
+			Map<String, String> typeMap = mapper.readValue(inputStreamToString(req.getInputStream()),new TypeReference<Map<String, String>>(){});
 			String type = typeMap.get("type");
 			
 			TodoDto todo = new TodoDto(id, type);

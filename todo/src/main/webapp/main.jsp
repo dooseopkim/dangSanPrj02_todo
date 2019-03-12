@@ -28,7 +28,7 @@
 						<p class="todo-card-text">
 							등록날짜 : ${todo.regdate}, ${todo.name}, 우선순위 ${todo.sequence }
 						</p>
-						<button class="js__btn" onclick="updateType(event);">➡️</button>
+						<button class="js__update-btn" onclick="updateType(event);">➡️</button>
 					</li>
 				</c:forEach>
 			</ul>
@@ -40,7 +40,7 @@
 						<p class="todo-card-text">
 							등록날짜 : ${doing.regdate}, ${doing.name}, 우선순위 ${doing.sequence }
 						</p>
-						<button class="js__btn" onclick="updateType(event);">➡️</button>
+						<button class="js__update-btn" onclick="updateType(event);">➡️</button>
 					</li>
 				</c:forEach>
 			</ul>
