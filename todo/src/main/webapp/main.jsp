@@ -28,7 +28,7 @@
 						<p class="todo-card-text">
 							등록날짜 : ${todo.regdate}, ${todo.name}, 우선순위 ${todo.sequence }
 						</p>
-						<button class="js__update-btn" onclick="updateType(event);">➡️</button>
+						<button class="js__update-btn" onclick="updateBtn(event);">➡️</button>
 					</li>
 				</c:forEach>
 			</ul>
@@ -40,7 +40,7 @@
 						<p class="todo-card-text">
 							등록날짜 : ${doing.regdate}, ${doing.name}, 우선순위 ${doing.sequence }
 						</p>
-						<button class="js__update-btn" onclick="updateType(event);">➡️</button>
+						<button class="js__update-btn" onclick="updateBtn(event);">➡️</button>
 					</li>
 				</c:forEach>
 			</ul>
@@ -58,48 +58,6 @@
 		</section>
 	</article>
 	</main>
-	<script>
-
-		function modifyType(id, type) {
-			var uri = "TodoTypeServlet/"+id;
-			var data = {};
-			data.type = type;
-			var json = JSON.stringify(data);
-			
-			var xhr = new XMLHttpRequest();
-			xhr.open("PUT", uri, true);
-			xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
-			xhr.onreadystatechange = function() {
-				if (this.readyState == 4 && this.status == 200) {
-					if (this.responseText === 'success') {
-						moveCard(id, type);
-					} else {
-						alert("Todo없데이트에 실패하였습니다.");
-					}
-				}
-			}
-			xhr.send(json);
-		}
-		function updateType(event) {
-			var btn = event.target;
-			var id = btn.parentElement.id;
-			var type = btn.parentElement.parentElement.id;
-			modifyType(id, type);
-		}
-		function moveCard(id, type) {
-			var ul = document.getElementById(type);
-			var li = document.getElementById(id);
-
-			if (type == 'TODO') {
-				ul.removeChild(li);
-				document.getElementById('DOING').append(li);
-			} else {
-				var btn = li.querySelector('.js__btn');
-				ul.removeChild(li);
-				li.removeChild(btn);
-				document.getElementById('DONE').append(li);
-			}
-		}
-	</script>
+	<script src="./resources/js/main.js"></script>
 </body>
 </html>

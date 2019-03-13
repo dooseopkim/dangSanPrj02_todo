@@ -29,7 +29,7 @@ public class TodoAddServlet extends HttpServlet {
 		TodoDao dao = new TodoDao();
 		if(dao.addTodo(todo) == 1) {
 			System.out.println("success AddTodo");
-			response.sendRedirect("/");
+			response.sendRedirect("main");
 		}else {
 			System.out.println("Fail AddTodo");
 			response.sendRedirect("TodoFormServlet");

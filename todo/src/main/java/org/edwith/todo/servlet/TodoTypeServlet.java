@@ -27,24 +27,27 @@ public class TodoTypeServlet extends HttpServlet {
 	}
 
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setContentType("text/html;charset=utf-8");
 		if(req.getPathInfo().startsWith("/")) {
 			Long id = Long.parseLong(req.getPathInfo().substring(1)); 	
 			
 			ObjectMapper mapper = new ObjectMapper();
-			Map<String, String> typeMap = mapper.readValue(inputStreamToString(req.getInputStream()),new TypeReference<Map<String, String>>(){});
-			String type = typeMap.get("type");
+			Map<String, String> inMap = mapper.readValue(inputStreamToString(req.getInputStream()),new TypeReference<Map<String, String>>(){});
+			String type = inMap.get("type");
+			
+			Map<String, String> outMap = new HashMap<String, String>();
+			outMap.put("id", id.toString());
+			outMap.put("type", type);
 			
 			TodoDto todo = new TodoDto(id, type);
 			TodoDao dao = new TodoDao();
-
-			resp.setContentType("text/html;charset=utf-8");
+			
 			if(dao.updateTodo(todo) == 1) {
-				System.out.println("success update todo");
-				resp.getWriter().write("success");
+				outMap.put("resultMsg", "success");
 			}else {
-				System.out.println("fail update todo");
-				resp.getWriter().write("fail");
+				outMap.put("resultMsg", "fail");
 			}
+			resp.getWriter().write(mapper.writeValueAsString(outMap));
 		}
 	}
 
