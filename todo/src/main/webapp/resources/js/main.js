@@ -2,20 +2,20 @@ const TODOTYPESERVLET_REQUEST_URI = "TodoTypeServlet/";
 
 function updateBtn(e){
 	e.preventDefault();
-	const btn = e.target;
-	const id = btn.parentElement.id;
-	const type = btn.parentElement.parentElement.id;
+	var btn = e.target;
+	var id = btn.parentElement.id;
+	var type = btn.parentElement.parentElement.id;
 	
 	updateTypeFunction(id, type).then(updateCard, updateFail);
 	
 }
 var updateTypeFunction = function(id, type) {
-    const uri = TODOTYPESERVLET_REQUEST_URI + id;
-    let data = {};
+    var uri = TODOTYPESERVLET_REQUEST_URI + id;
+    var data = {};
     	data.type = type;
-    let json = JSON.stringify(data);
+    var json = JSON.stringify(data);
     
-    let xhr = new XMLHttpRequest();
+    var xhr = new XMLHttpRequest();
     
     return new Promise(function (resolve, reject){
     	xhr.onreadystatechange = function(){
@@ -32,12 +32,12 @@ var updateTypeFunction = function(id, type) {
     });
  }
 var updateCard = function(result) {
-	const loadedJsonData = JSON.parse(result);
-	const loadedResult = loadedJsonData.resultMsg;
+	var loadedJsonData = JSON.parse(result);
+	var loadedResult = loadedJsonData.resultMsg;
 	
 	if(loadedResult !== 'success') return;
-	let ul = document.getElementById(loadedJsonData.type);
-	let li = document.getElementById(loadedJsonData.id);
+	var ul = document.getElementById(loadedJsonData.type);
+	var li = document.getElementById(loadedJsonData.id);
     if (loadedJsonData.type === 'TODO') {
        ul.removeChild(li);
        document.getElementById('DOING').append(li);
