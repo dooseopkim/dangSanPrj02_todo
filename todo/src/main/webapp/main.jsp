@@ -18,9 +18,9 @@
 	<main>
 	<article>
 		<h2 class="main-logo">나의 해야할 일들</h2>
-		<a href="TodoFormServlet" class="main-newTodo">새로운 TODO 등록</a>
+		<a href="TodoFormServlet" class="main-todo-btn">새로운 TODO 등록</a>
 		<section class="todos-container">
-			<ul id="TODO" class="todos-col">
+			<ul id="todo" class="todos-col">
 				<h3 class="todos-title todo-card">TODO</h3>
 				<c:forEach items="${todoList }" var="todo">
 					<li class="todo-card" id="${todo.id}">
@@ -28,11 +28,11 @@
 						<p class="todo-card-text">
 							등록날짜 : ${todo.regdate}, ${todo.name}, 우선순위 ${todo.sequence }
 						</p>
-						<button class="js__update-btn" onclick="updateBtn(event);">➡️</button>
+						<button class="js__update-btn">➡️</button>
 					</li>
 				</c:forEach>
 			</ul>
-			<ul id="DOING" class="todos-col">
+			<ul id="doing" class="todos-col">
 				<h3 class="todos-title todo-card">DOING</h3>
 				<c:forEach items="${doingList }" var="doing">
 					<li class="todo-card" id="${doing.id}">
@@ -40,11 +40,11 @@
 						<p class="todo-card-text">
 							등록날짜 : ${doing.regdate}, ${doing.name}, 우선순위 ${doing.sequence }
 						</p>
-						<button class="js__update-btn" onclick="updateBtn(event);">➡️</button>
+						<button class="js__update-btn">➡️</button>
 					</li>
 				</c:forEach>
 			</ul>
-			<ul id="DONE" class="todos-col">
+			<ul id="done" class="todos-col">
 				<h3 class="todos-title todo-card">DONE</h3>
 				<c:forEach items="${doneList }" var="done">
 					<li class="todo-card" id="${done.id}">
