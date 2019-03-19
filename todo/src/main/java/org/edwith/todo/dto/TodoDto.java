@@ -1,5 +1,7 @@
 package org.edwith.todo.dto;
 
+import org.edwith.todo.util.DateFormatChange;
+
 public class TodoDto {
 	private Long id;
 	private String title;
@@ -76,7 +78,7 @@ public class TodoDto {
 	}
 
 	public String getRegdate() {
-		return regdate;
+		return DateFormatChange.change(regdate);
 	}
 
 	public void setRegdate(String regdate) {
