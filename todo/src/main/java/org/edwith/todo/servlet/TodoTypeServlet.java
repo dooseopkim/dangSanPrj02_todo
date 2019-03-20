@@ -37,7 +37,7 @@ public class TodoTypeServlet extends HttpServlet {
 			
 			Map<String, String> outMap = new HashMap<String, String>();
 			outMap.put("id", id.toString());
-			outMap.put("type", type);
+			outMap.put("type", type.toUpperCase());
 			
 			TodoDto todo = new TodoDto(id, type);
 			TodoDao dao = new TodoDao();
